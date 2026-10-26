@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Hardhat build output
+artifacts/
+cache/
+coverage/
+typechain-types/
+
+# Secrets
+.env
+
+# IDEs
+.idea/
+.vscode/
