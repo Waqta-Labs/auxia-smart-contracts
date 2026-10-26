@@ -28,6 +28,29 @@ deployments/        # address, network, block and ABI per network, after deploym
 hardhat.config.js
 ```
 
+## DeliveryRegistry
+
+The owner is the account that deploys the contract: the wallet of
+`auxia-backend`. It uses OpenZeppelin's `Ownable`.
+
+| Member | Access | Description |
+|---|---|---|
+| `registerDelivery(bytes16 deliveryId, bytes32 hash)` | Owner only | Anchors the hash of a delivery. `deliveryId` is the UUID of the delivery in binary form (16 bytes) and `hash` is the SHA-256 of its canonical record. |
+| `getDeliveryHash(bytes16 deliveryId) returns (bytes32)` | Public, read only | Returns the anchored hash, or zero if the delivery was never registered. |
+| `DeliveryRegistered(bytes16 indexed deliveryId, bytes32 hash, uint256 timestamp)` | Event | Emitted on each registration, for auditing from a block explorer. |
+
+`registerDelivery` reverts with:
+
+| Error | When |
+|---|---|
+| `OwnableUnauthorizedAccount(address)` | The caller is not the owner. |
+| `InvalidDeliveryId()` | `deliveryId` is zero. |
+| `EmptyHash()` | `hash` is zero. |
+| `DeliveryAlreadyRegistered(bytes16)` | The delivery already has a hash. An anchored hash is never overwritten. |
+
+From Java (Web3j), the UUID becomes `bytes16` with its 16 bytes in order
+(most significant bits first), and the SHA-256 digest goes into `bytes32` as is.
+
 ## Setup
 
 ```bash
