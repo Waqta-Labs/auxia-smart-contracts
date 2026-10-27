@@ -5,7 +5,7 @@ node_modules/
 artifacts/
 cache/
 coverage/
-typechain-types/
+types/
 
 # Secrets
 .env
