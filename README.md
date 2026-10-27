@@ -75,6 +75,17 @@ The same commands are available as `npm run compile`, `npm test` and
 
 ## Deployment (Sepolia)
 
+Current deployment:
+
+| | |
+|---|---|
+| Network | Sepolia (chain id 11155111) |
+| Address | [`0xe678347E182cbf00031401C97284AaB1C6b8148c`](https://sepolia.etherscan.io/address/0xe678347E182cbf00031401C97284AaB1C6b8148c#code) (source verified) |
+| Owner | `0xec847cAde7b1eA9C184a9c4b58f0cE803aEc1055` |
+| Block | 12008166 |
+
+To deploy again:
+
 1. Create a test wallet (for example in MetaMask) and get Sepolia ETH from a
    faucet. Its private key goes to `PRIVATE_KEY`: this wallet becomes the
    owner of the contract, so it is also the wallet the backend uses to
