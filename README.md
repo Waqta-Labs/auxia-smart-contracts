@@ -22,8 +22,8 @@ quantities or any data about beneficiaries.
 
 ```text
 contracts/          # DeliveryRegistry.sol
-test/               # DeliveryRegistry.test.js
-scripts/            # deploy.js
+test/               # DeliveryRegistry.test.js, deployment.test.js
+scripts/            # deploy.js and the deployment logic it uses (lib/)
 deployments/        # address, network, block and ABI per network, after deployment
 hardhat.config.js
 ```
@@ -58,7 +58,7 @@ npm ci
 ```
 
 Local tests run on Hardhat's simulated network and need no configuration.
-The testnet deployment uses the variables listed in `.env.example`
+The Sepolia deployment uses the variables listed in `.env.example`
 (`PRIVATE_KEY`, `RPC_URL`, `ETHERSCAN_API_KEY`). Copy it to `.env` and fill in
 the values. `.env` is ignored by git and must never be committed.
 
@@ -72,3 +72,40 @@ the values. `.env` is ignored by git and must never be committed.
 
 The same commands are available as `npm run compile`, `npm test` and
 `npm run coverage`.
+
+## Deployment (Sepolia)
+
+Current deployment:
+
+| | |
+|---|---|
+| Network | Sepolia (chain id 11155111) |
+| Address | [`0xe678347E182cbf00031401C97284AaB1C6b8148c`](https://sepolia.etherscan.io/address/0xe678347E182cbf00031401C97284AaB1C6b8148c#code) (source verified) |
+| Owner | `0xec847cAde7b1eA9C184a9c4b58f0cE803aEc1055` |
+| Block | 12008166 |
+
+To deploy again:
+
+1. Create a test wallet (for example in MetaMask) and get Sepolia ETH from a
+   faucet. Its private key goes to `PRIVATE_KEY`: this wallet becomes the
+   owner of the contract, so it is also the wallet the backend uses to
+   register deliveries. Never use a wallet with real funds.
+2. Create a Sepolia app in Alchemy or Infura and copy its URL to `RPC_URL`,
+   and an Etherscan API key to `ETHERSCAN_API_KEY`.
+3. Deploy:
+
+   ```bash
+   npx hardhat run scripts/deploy.js --network sepolia
+   ```
+
+   The script prints the address and saves `deployments/sepolia.json` with the
+   network, chain id, address, owner, transaction, block and ABI. That file is
+   versioned: the backend reads the address and the ABI from it.
+4. Verify the source code on Etherscan with the command the script prints:
+
+   ```bash
+   npx hardhat verify --network sepolia <address>
+   ```
+
+Running the script without `--network` deploys on Hardhat's local network and
+saves nothing.
