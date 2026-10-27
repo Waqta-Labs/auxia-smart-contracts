@@ -1,0 +1,168 @@
+{
+  "contract": "DeliveryRegistry",
+  "network": "sepolia",
+  "chainId": 11155111,
+  "address": "0xe678347E182cbf00031401C97284AaB1C6b8148c",
+  "owner": "0xec847cAde7b1eA9C184a9c4b58f0cE803aEc1055",
+  "transactionHash": "0x5eab83079439f31430823775bf50dd35d8ab1d2718d290f67e12f1696b6ceab8",
+  "blockNumber": 12008166,
+  "deployedAt": "2026-10-27T22:37:11.909Z",
+  "abi": [
+    {
+      "type": "constructor",
+      "stateMutability": "undefined",
+      "payable": false,
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "DeliveryAlreadyRegistered",
+      "inputs": [
+        {
+          "type": "bytes16",
+          "name": "deliveryId"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "EmptyHash",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "InvalidDeliveryId",
+      "inputs": []
+    },
+    {
+      "type": "error",
+      "name": "OwnableInvalidOwner",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "owner"
+        }
+      ]
+    },
+    {
+      "type": "error",
+      "name": "OwnableUnauthorizedAccount",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "account"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "DeliveryRegistered",
+      "inputs": [
+        {
+          "type": "bytes16",
+          "name": "deliveryId",
+          "indexed": true
+        },
+        {
+          "type": "bytes32",
+          "name": "hash",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "type": "address",
+          "name": "previousOwner",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "newOwner",
+          "indexed": true
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getDeliveryHash",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes16",
+          "name": "deliveryId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bytes32",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "owner",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [],
+      "outputs": [
+        {
+          "type": "address",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "registerDelivery",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "bytes16",
+          "name": "deliveryId"
+        },
+        {
+          "type": "bytes32",
+          "name": "hash"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "renounceOwnership",
+      "constant": false,
+      "payable": false,
+      "inputs": [],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "address",
+          "name": "newOwner"
+        }
+      ],
+      "outputs": []
+    }
+  ]
+}
